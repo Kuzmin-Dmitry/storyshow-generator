@@ -20,5 +20,10 @@ Arguments:
     attempts to locate a common system font and otherwise falls back to MoviePy's
     default.
 
+The script prefers a bundled virtual environment at `.venv` for importing
+MoviePy so a newer release can be used without affecting the system Python.
+Install requirements with `pip install -r requirements.txt` inside `.venv`
+or globally.
+
 Subtitles are generated automatically by splitting the text into sentences
 and distributing them across the audio duration.

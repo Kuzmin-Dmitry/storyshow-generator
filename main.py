@@ -4,6 +4,20 @@ from __future__ import annotations
 import argparse
 import glob
 import os
+import sys
+from pathlib import Path
+
+# Prefer bundled virtualenv's site-packages so the project can use a newer
+# MoviePy than the globally installed one.
+_ROOT = Path(__file__).resolve().parent
+_VENV_CANDIDATES = [
+    _ROOT / ".venv" / "Lib" / "site-packages",  # Windows layout
+    _ROOT / ".venv" / "lib" / f"python{sys.version_info.major}.{sys.version_info.minor}" / "site-packages",
+]
+for _path in _VENV_CANDIDATES:
+    if _path.exists() and str(_path) not in sys.path:
+        sys.path.insert(0, str(_path))
+        break
 
 from moviepy import CompositeVideoClip
 
