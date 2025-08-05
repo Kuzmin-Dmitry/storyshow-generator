@@ -16,7 +16,9 @@ Arguments:
 - `--output` – resulting mp4 file.
 - `--resolution` – video resolution, e.g. `1920x1080`.
 - `--transition` – duration of transitions between slides in seconds.
-- `--font` – path to a `.ttf` font used for subtitle text (default `/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf`).
+  - `--font` – path to a `.ttf` font used for subtitle text. If omitted, the script
+    attempts to locate a common system font and otherwise falls back to MoviePy's
+    default.
 
 Subtitles are generated automatically by splitting the text into sentences
 and distributing them across the audio duration.

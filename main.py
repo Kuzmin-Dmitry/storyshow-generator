@@ -9,7 +9,11 @@ from moviepy import CompositeVideoClip
 
 from utils.audio import load_audio
 from utils.slideshow import create_slideshow
-from utils.subtitles import create_subtitles_clip, generate_subtitle_entries
+from utils.subtitles import (
+    create_subtitles_clip,
+    default_font_path,
+    generate_subtitle_entries,
+)
 
 
 def parse_resolution(value: str) -> tuple[int, int]:
@@ -32,7 +36,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--font",
-        default="/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        default=default_font_path(),
         help="Font path used for subtitle rendering",
     )
     return parser
@@ -61,8 +65,14 @@ def main() -> int:
             story_text = f.read()
 
         subtitle_entries = generate_subtitle_entries(story_text, audio_clip.duration)
+
+        font_path = args.font
+        if font_path and not os.path.exists(font_path):
+            print(f"Warning: font '{font_path}' not found, using default")
+            font_path = None
+
         subtitles_clip = create_subtitles_clip(
-            subtitle_entries, (width, height), font=args.font
+            subtitle_entries, (width, height), font=font_path
         )
 
         video = CompositeVideoClip([slideshow, subtitles_clip])
