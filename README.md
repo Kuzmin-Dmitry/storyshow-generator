@@ -16,6 +16,7 @@ Arguments:
 - `--output` – resulting mp4 file.
 - `--resolution` – video resolution, e.g. `1920x1080`.
 - `--transition` – duration of transitions between slides in seconds.
+- `--font` – path to a `.ttf` font used for subtitle text (default `/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf`).
 
 Subtitles are generated automatically by splitting the text into sentences
 and distributing them across the audio duration.

@@ -32,7 +32,7 @@ def generate_subtitle_entries(story_text: str, audio_duration: float) -> List[Tu
 def create_subtitles_clip(
     subtitles: List[Tuple[Tuple[float, float], str]],
     size: Tuple[int, int],
-    font: str | None = None,
+    font: str | None = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     fontsize: int = 40,
     color: str = "white",
 ) -> SubtitlesClip:

@@ -30,6 +30,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--transition", type=float, default=1.0, help="Transition duration in seconds"
     )
+    parser.add_argument(
+        "--font",
+        default="/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        help="Font path used for subtitle rendering",
+    )
     return parser
 
 
@@ -56,7 +61,9 @@ def main() -> int:
             story_text = f.read()
 
         subtitle_entries = generate_subtitle_entries(story_text, audio_clip.duration)
-        subtitles_clip = create_subtitles_clip(subtitle_entries, (width, height))
+        subtitles_clip = create_subtitles_clip(
+            subtitle_entries, (width, height), font=args.font
+        )
 
         video = CompositeVideoClip([slideshow, subtitles_clip])
         video = video.with_audio(audio_clip)
