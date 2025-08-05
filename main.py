@@ -18,9 +18,7 @@ for _path in _VENV_CANDIDATES:
     if _path.exists() and str(_path) not in sys.path:
         sys.path.insert(0, str(_path))
         break
-
 from moviepy import CompositeVideoClip
-
 from utils.audio import load_audio
 from utils.slideshow import create_slideshow
 from utils.subtitles import (
